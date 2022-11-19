@@ -1,0 +1,56 @@
+public class Coffee {
+
+    double setSelectCoffee_price;
+    double ChickenSandwich_price =0;
+    double HamCroissant_price =0;
+    double SalmonSalad_price =0;
+
+
+
+    int[] allPrice = {27,25,20,24,20,25};
+
+    boolean[] coffeeSelected = {false,false,false,false,false,false,false,false};
+
+    String[] coffeeArray = {"a","b","c","d","e","f","g","h"};
+
+    public String[] getCoffeeArray() {return coffeeArray;}
+
+    public int[] getAllPrice(){ return allPrice; }
+    public boolean[] getCoffeeSelected() {return coffeeSelected;}
+    public void setCoffeeSelected(int position, boolean b){coffeeSelected[position] = b;}
+
+    public double getSelectCoffee_price() {
+        return setSelectCoffee_price;
+    }
+
+    public void setSelectCoffee_price(double selectCoffee_price) {
+        setSelectCoffee_price = selectCoffee_price;
+    }
+
+    public double getChickenSandwich_price() {
+        return ChickenSandwich_price;
+    }
+
+    public void setChickenSandwich_price(double chickenSandwich_price) {
+        ChickenSandwich_price = chickenSandwich_price;
+    }
+
+    public double getHamCroissant_price() {
+        return HamCroissant_price;
+    }
+
+    public void setHamCroissant_price(double hamCroissant_price) {
+        HamCroissant_price = hamCroissant_price;
+    }
+
+    public double getSalmonSalad_price() {
+        return SalmonSalad_price;
+    }
+
+    public void setSalmonSalad_price(double salmonSalad_price) {
+        SalmonSalad_price = salmonSalad_price;
+    }
+
+    public Coffee() {
+
+    }
