@@ -1,0 +1,46 @@
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.ListView;
+import android.widget.TextView;
+import java.util.ArrayList;
+
+public class ResultActivity extends AppCompatActivity {
+
+
+    String[] allPrice = {"$27","$25","$20","$24","$20","$25"};
+    String[] allC = {"a","b","c","d","e","f"};
+    boolean[] isSelect;
+    TextView tvPrice;
+    String price;
+    ListView listView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_result);
+
+        listView = findViewById(R.id.lv);
+        tvPrice = findViewById(R.id.result_price);
+
+        Intent it = getIntent();
+        isSelect = it.getBooleanArrayExtra("isOrder");
+        price = "$" + it.getStringExtra("price");
+        tvPrice.setText(price);
+
+
+        ArrayList<result> resultsList = new ArrayList<>();
+        for(int i=0;i<allC.length;i++){
+            if(isSelect[i]){
+                result r = new result(allC[i],allPrice[i]);
+                resultsList.add(r);
+            }
+        }
+
+
+        resultListAdapter adapter = new resultListAdapter(this, R.layout.adapter_layout,resultsList);
+        listView.setAdapter(adapter);
+
+
+    }
+}
