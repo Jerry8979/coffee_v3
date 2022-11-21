@@ -1,0 +1,68 @@
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+    public void Order_Click(View v) {
+        Intent intent = new Intent(MainActivity.this, Order.class); //create Intent & set target Activity
+        SharedPreferences thisEmail = getSharedPreferences("this_Email", MODE_PRIVATE);
+        if(thisEmail.getString("thisEmail", null) == null){
+            Toast.makeText(MainActivity.this,"Please login!",Toast.LENGTH_SHORT).show();
+        } else{
+            startActivity(intent); // start Intent
+        }
+    }
+    public void logIn_Click(View v) {
+        Intent intent = new Intent(MainActivity.this, logIn.class); //create Intent & set target Activity
+        SharedPreferences thisEmail = getSharedPreferences("this_Email", MODE_PRIVATE);
+        if(thisEmail.getString("thisEmail", null) == null){
+            startActivity(intent); // start Intent
+        } else{
+            Toast.makeText(MainActivity.this,"Already login!",Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void Video_Click(View v) {
+        Intent intent = new Intent(MainActivity.this, Video.class); //create Intent & set target Activity
+        startActivity(intent); // start Intent
+    }
+    public void AboutUS_Click(View v) {
+        Intent intent = new Intent(MainActivity.this, AboutUs.class); //create Intent & set target Activity
+        startActivity(intent); // start Intent
+    }
+    public void location_Click(View v) {
+        Intent intent = new Intent(MainActivity.this, location.class); //create Intent & set target Activity
+        startActivity(intent); // start Intent
+    }
+    public void OcLogout(View v){
+        SharedPreferences thisEmail = getSharedPreferences("this_Email", MODE_PRIVATE);
+
+        if(thisEmail.getString("thisEmail", null) == null){
+            Toast.makeText(MainActivity.this,"Already log out!",Toast.LENGTH_SHORT).show();
+        } else{
+            thisEmail.edit().putString("thisEmail", null).commit();
+            email.setText("have not log in");
+            Toast.makeText(MainActivity.this,"successfully log out!",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    TextView email;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        email = findViewById(R.id.txv_email);
+
+        SharedPreferences thisEmail = getSharedPreferences("this_Email", MODE_PRIVATE);
+        if(thisEmail.getString("thisEmail", null) == null){
+            email.setText("have not log in");
+        } else{
+            email.setText(thisEmail.getString("thisEmail", null));
+        }
+    }
+}
