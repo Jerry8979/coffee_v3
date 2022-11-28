@@ -39,11 +39,14 @@ public class Order extends AppCompatActivity {
 
 
     public void radioClicked(View view){
-        for(int j=0; j<3; j++){coffee.setCoffeeSelected(j,false);}
-        for(int i=0; i<3; i++){
-           if(view.getId() == all_id[i]){
-               coffee.setCoffeeSelected(i,true);
-           }
+        if(view.getId() == all_id[0] || view.getId() == all_id[1] || view.getId() == all_id[2]){
+            for(int i=0;i<3;i++){
+                coffee.setCoffeeSelected(i,view.getId() == all_id[i]);
+            }
+        }
+        else if(view.getId() == all_id[6] || view.getId() == all_id[7]){
+            coffee.setCoffeeSelected(6,view.getId() == all_id[6]);
+            coffee.setCoffeeSelected(7,view.getId() == all_id[7]);
         }
         total.setText("Total Price:" + String.format("%.2f",calculate_total()));
     }
